@@ -1,9 +1,8 @@
 package router
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"github.com/lhungaro10/goapi/handler"
 )
 
 func initializeRoutes(router *gin.Engine){
@@ -17,36 +16,16 @@ func initializeRoutes(router *gin.Engine){
 		})
 
 		//Show Opportunity
-		v1.GET("/opening", func(c *gin.Context){
-			c.JSON(http.StatusOK, gin.H{
-				"message":"GET opening",
-			})
-		})
+		v1.GET("/opening", handler.ShowOpenningHandler)
 		//Create Opportunity
-		v1.POST("/opening", func(c *gin.Context){
-			c.JSON(http.StatusOK, gin.H{
-				"message":"POST opening",
-			})
-		})
+		v1.POST("/opening", handler.CreateOpenningHandler)
 
 		//Edit Opportunity
-		v1.PUT("/opening", func(c *gin.Context){
-			c.JSON(http.StatusOK, gin.H{
-				"message":"PUT opening",
-			})
-		})
+		v1.PUT("/opening", handler.EditOpenningHandler)
 
 		//Delete Opportunity
-		v1.DELETE("/opening", func(c *gin.Context){
-			c.JSON(http.StatusOK, gin.H{
-				"message":"DELETE opening",
-			})
-		})
+		v1.DELETE("/opening", handler.DeleteOpenningHandler)
 		//Show All Opportunity
-		v1.GET("/openings", func(c *gin.Context){
-			c.JSON(http.StatusOK, gin.H{
-				"message":"GET openings",
-			})
-		})
+		v1.GET("/openings", handler.ShowAllOpenningsHandler)
 	}
 }
