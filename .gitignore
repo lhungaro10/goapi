@@ -1,0 +1,13 @@
+# Binaries
+*.exe
+*.dll
+*.so
+
+#Test binary
+*.test
+
+# Coverage Output
+*.out
+
+# Database
+db/
