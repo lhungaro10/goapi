@@ -2,13 +2,19 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
+	docs "github.com/lhungaro10/goapi/docs"
 	"github.com/lhungaro10/goapi/handler"
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func initializeRoutes(router *gin.Engine){
 	//initialize handler
 	handler.InitializeHandler()
-	v1 := router.Group("/api/v1")
+	const BASE_PATH string = "/api/v1"
+	docs.SwaggerInfo.BasePath = BASE_PATH;
+
+	v1 := router.Group(BASE_PATH)
 	{
 		//server status
 		v1.GET("/ping", func(c *gin.Context) {
@@ -30,4 +36,6 @@ func initializeRoutes(router *gin.Engine){
 		//Show All Opportunity
 		v1.GET("/openings", handler.ShowAllOpenningsHandler)
 	}
+
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 }
