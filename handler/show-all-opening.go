@@ -4,10 +4,16 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/lhungaro10/goapi/schemas"
 )
 
 func ShowAllOpenningsHandler(c *gin.Context){
-	c.JSON(http.StatusOK, gin.H{
-		"message":"GET openings",
-	})
+	openings := []schemas.Opening{}
+
+	if err := db.Find(&openings).Error; err != nil {
+		SendError(c, http.StatusInternalServerError, "error fetching openings")
+		return
+	}
+
+	SendSuccess(c, "show-all-openings", openings)
 }
