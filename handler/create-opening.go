@@ -7,7 +7,17 @@ import (
 	"github.com/lhungaro10/goapi/schemas"
 )
 
-
+//@BasePath /api/v1
+//@Summary Create Opening
+//@Description Create a new Job Opening
+//@Tags Opening
+//@Accept json
+//@Produce json
+//@Param request body CreateOpeningRequest true "request body"
+//@Success 200 {object} CreateOpeneningReponse
+//@Failure 400 {object} ErrorResponse
+//@Failure 500 {object} ErrorResponse
+//@Router /opening [post]
 func CreateOpenningHandler(c *gin.Context){
 	request := CreateOpeningRequest{}
 

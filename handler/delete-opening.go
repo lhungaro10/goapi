@@ -8,6 +8,17 @@ import (
 	"github.com/lhungaro10/goapi/schemas"
 )
 
+//@BasePath /api/v1
+//@Summary Delete Opening
+//@Description Delete a new Job Opening
+//@Tags Opening
+//@Accept json
+//@Produce json
+//@Param id query string true "Opening Identifier"
+//@Success 200 {object} DeleteOpeneningReponse
+//@Failure 404 {object} ErrorResponse
+//@Failure 500 {object} ErrorResponse
+//@Router /opening [delete]
 func DeleteOpenningHandler(c *gin.Context){
 	id := c.Query("id")
 
